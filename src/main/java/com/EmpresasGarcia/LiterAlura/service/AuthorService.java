@@ -10,10 +10,21 @@ import java.util.List;
 @Service
 public class AuthorService {
 
-    @Autowired
-    private AuthorRepository authorRepository;
+    private final AuthorRepository authorRepository;
 
-    public List<Author> getAuthorsAliveInYear(int year) {
-        return authorRepository.findAuthorsAliveInYear(year);
+    public AuthorService(AuthorRepository authorRepository) {
+        this.authorRepository = authorRepository;
+    }
+
+    public List<Author> searchAuthorsByName(String name) {
+        return authorRepository.findByNameContainingIgnoreCase(name);
+    }
+
+    public List<Author> findAuthorsByBirthYearRange(int start, int end) {
+        return authorRepository.findByBirthYearBetween(start, end);
+    }
+
+    public List<Author> findAuthorsByDeathYearRange(int start, int end) {
+        return authorRepository.findByDeathYearBetween(start, end);
     }
 }

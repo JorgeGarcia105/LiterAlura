@@ -23,8 +23,10 @@ public class Main implements CommandLineRunner {
     @Autowired
     private AuthorRepository authorRepository;
 
+    @Autowired
+    private BookService bookService;
+
     private Scanner scanner = new Scanner(System.in);
-    private BookService bookService = new BookService();
     private final String BASE_URL = "https://gutendex.com/books/";
     private DataConverter dataConverter = new DataConverter();
 

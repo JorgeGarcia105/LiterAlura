@@ -23,4 +23,7 @@ public interface AuthorRepository extends JpaRepository<Author, Long> {
     // Usamos @Query para escribir una consulta personalizada con JPQL
     @Query("SELECT a FROM Author a WHERE a.birthYear <= :year AND (a.deathYear IS NULL OR a.deathYear > :year)")
     List<Author> findAuthorsAliveInYear(int year);
+
+    List<Author> findByBirthYearBetween(int startYear, int endYear);
+    List<Author> findByDeathYearBetween(int startYear, int endYear);
 }
